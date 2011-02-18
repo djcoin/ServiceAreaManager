@@ -38,6 +38,12 @@ import lg.area.res.ResourceHandler;
  * BIG TODO: 
  * - launch it as a service - does not need to be an activity
  * - propose an onNewIntent for this activity
+ * - on this intent you could put with sub-services you want (what to mock..)
+ * 	 and maybe some sources for the mock (the name of a pre-registered file containing location..)
+ * 
+ * BIG:
+ * - OMG: create a BO you can TEST ! A line string representing the "parcours"
+ * 	 	  and deduce assertion from that.
  * 
  * @author sim
  *
