@@ -24,6 +24,8 @@ import lg.area.mock.location.FakeLocationFactories.FakeCustomLocationFactory;
 import lg.area.mock.location.FakeLocationFactories.ILocationFactory;
 import lg.area.res.Area;
 import lg.area.res.AreaManager;
+import lg.area.res.BoLoader;
+import lg.area.res.ResourceHandler;
 
 public class Main extends Activity {
 
@@ -36,17 +38,25 @@ public class Main extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);		
-		am = AreaManager.makeInstance(this);
+		super.onCreate(savedInstanceState);
 		
+		ResourceHandler rh = ResourceHandler.getInstance();
+		new BoLoader(this, rh).load();	
+		
+		IMockAreaFactory areaFactory =  new AreaFactories.SimpleAreaFactory();
+		// am = AreaManager.makeInstance(this, areaFactory);
+		// WARNING WITH AreaService !! It also need areaManager. Used to create it!		
+		am = AreaManager.makeInstance(this, null);
+		
+		// new Intent AreaService.class => launch this service that will get AreaManager
 		this.registerLocationReceiver();
 		this.registerBroadcastReceiver();
 		
 		
-		IMockAreaFactory areaFactory =  new AreaFactories.SimpleAreaFactory();
 		FakeCustomLocationFactory locationFactory = new FakeLocationFactories.FakeCustomLocationFactory();
-		double[] d = areaFactory.getSpecialPoint();
-		locationFactory.setData(new double[]{d[0], d[1]});
+		// double[] d = areaFactory.getSpecialPoint();
+		// locationFactory.setData(new double[]{d[0], d[1]});		
+		locationFactory.setData(rh.poiExtractLocationFrom());
 		
 		if(mockLocation){			
 			new MockLocationLauncher(this, locationFactory); // ILocationFactory

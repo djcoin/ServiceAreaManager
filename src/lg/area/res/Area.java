@@ -2,12 +2,14 @@ package lg.area.res;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 
 @Element
-public class Area
+public class Area implements Geom
 {
 	@Attribute
 	protected String name;
@@ -68,6 +70,11 @@ public class Area
 		{
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Geometry getGeom() {		
+		return geom;
 	}
 
 }

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
+
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 
 @Element
-public class Poi
+public class Poi implements Geom
 {
 	@Attribute
 	protected String id;
@@ -83,5 +85,10 @@ public class Poi
 		{
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Geometry getGeom() {
+		return geom;
 	}
 }

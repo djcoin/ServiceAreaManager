@@ -28,15 +28,21 @@ public class AreaManager
 	private GeometryFactory geometryFactory = new GeometryFactory();
 	private Point jtsPoint; // gps Point un JTS
 
-	protected AreaManager(Context context)
+	protected AreaManager(Context context, IMockAreaFactory areaFactory)
 	{
 		ctx = context;
-		IMockAreaFactory areaFactory =  new AreaFactories.SimpleAreaFactory();
-		larea = areaFactory.createFakeArea();
+		// no more used at the moment
+		// larea = areaFactory.createFakeArea();
+		
+		// FIXME
+		ResourceHandler rh = ResourceHandler.getInstance();
+		larea = new ArrayList<Area>();
+		larea.addAll(rh.getContent());
+		larea.addAll(rh.getAmbient());
 	}
-	public static AreaManager makeInstance(Context context)
+	public static AreaManager makeInstance(Context context, IMockAreaFactory areaFactory)
 	{		
-		instance = new AreaManager(context);
+		instance = new AreaManager(context, areaFactory);
 		return instance;
 	}
 	

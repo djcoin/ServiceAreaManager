@@ -78,7 +78,7 @@ public class SimpleMockLocationProvider {
 			location.setTime(System.currentTimeMillis());
 			
 			lastLocation = location;
-			Log.d(TAG, "Sending new mock location: " + location.toString());
+			Log.d(TAG, "Sending new mock location: " + location.getLongitude() + "/" + location.getLatitude());
 			
 			// SimpleMockLocationProvider.map.onLocationChanged(location);
 			locationManager.setTestProviderLocation(mockLocationProvider, lastLocation);

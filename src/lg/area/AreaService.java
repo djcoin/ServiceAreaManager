@@ -29,7 +29,7 @@ public class AreaService extends Service implements LocationListener {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		areaManager = AreaManager.makeInstance(this);
+		areaManager = AreaManager.getInstance();
 		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		locationManager.requestLocationUpdates(
 				SimpleMockLocationProvider.mockLocationProvider, 0, 0, this);
