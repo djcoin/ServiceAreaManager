@@ -73,15 +73,17 @@ public class AreaManager
 		this.broadcast(a.getName(), "NOTVISITED");
 	}
 	
+	// TODO optimize this !
 	public void onLocationChanged(Location location) {
 		Coordinate coord = new Coordinate(location.getLongitude(), location.getLatitude()); // x,y
 		jtsPoint = geometryFactory.createPoint(coord);
 		for (Area a : larea) {
 			if(jtsPoint.intersects(a.geom)){
-				System.out.println("AreaManager intersection !" + a.toString() + "/" + location);
+				System.out.println("AreaManager intersection !" + a.toString() + "/" + location.getLongitude() + "/" + location.getLatitude());
 				fireAreaVisited(a);
 			}
 		}
+		System.out.println("===================================="); // Intersection test finished
 	}
 
 }
