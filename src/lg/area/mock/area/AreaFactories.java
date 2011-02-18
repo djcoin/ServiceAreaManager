@@ -1,4 +1,4 @@
-package lg.area.mock;
+package lg.area.mock.area;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class AreaFactories {
 		double[] getSpecialPoint();
 	}
 	
-	public class SimpleAreaFactory implements IMockAreaFactory{
+	public static class SimpleAreaFactory implements IMockAreaFactory{
 		Area tmp;
 		@Override
 		public List<Area> createFakeArea() {

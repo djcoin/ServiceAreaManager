@@ -1,4 +1,4 @@
-package lg.area.mock;
+package lg.area.mock.location;
 
 
 import java.util.Timer;
@@ -18,7 +18,7 @@ public class SimpleMockLocationProvider {
 	private UpdateLocationTask updateLocationTask;
 	
 	public Timer chronos; // do what you want with the internal chronos...
-	private FakeLocationSource dataSource;
+	private ILocationSource dataSource;
 	private Location lastLocation;
 	
 	
@@ -44,7 +44,7 @@ public class SimpleMockLocationProvider {
 		return mockProvider; // return null if not set
 	}
 	
-	public void start(FakeLocationSource dataSource, long period){
+	public void start(ILocationSource dataSource, long period){
 		if (!is_registered_mock){
 			Log.d(TAG, "You did not registered the mock location provider!!!");
 			return;
@@ -54,7 +54,7 @@ public class SimpleMockLocationProvider {
 		chronos.scheduleAtFixedRate(updateLocationTask, 0, period);
 		started = true;
 	}
-	public void start(FakeLocationSource dataSource){
+	public void start(ILocationSource dataSource){
 		this.start(dataSource, 2000); // every 2 seconds
 	}
 	public void stop(){

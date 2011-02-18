@@ -1,11 +1,11 @@
-package lg.area.mock;
+package lg.area.mock.location;
 
 import android.location.Location;
 
-public class FakeLocationSource {
+public class FakeLocationSource implements ILocationSource {
 
 	// List of location
-	private static Double[] location_ll = {
+	private static double[] location_ll = {
 		-1.6236443817036, 47.211327779788, 
 		-1.6230435668843, 47.211005282247, 
 		-1.6225044428724, 47.210894138572, 

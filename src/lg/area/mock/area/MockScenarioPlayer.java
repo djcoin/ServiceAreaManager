@@ -1,4 +1,4 @@
-package lg.area.mock;
+package lg.area.mock.area;
 
 import java.util.ArrayList;
 import java.util.List;

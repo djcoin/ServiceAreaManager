@@ -1,27 +1,23 @@
-package lg.area;
+package lg.area.mock.area;
 
 import java.util.List;
 
-import lg.area.mock.FakeLocationSource;
-import lg.area.mock.MockScenarioPlayer;
-import lg.area.mock.SimpleMockLocationProvider;
-import lg.area.mock.MockScenarioPlayer.Action;
+import lg.area.mock.area.MockScenarioPlayer.Action;
+import lg.area.mock.location.SimpleMockLocationProvider;
+
 
 import android.content.Context;
 import android.location.LocationManager;
 import android.util.Log;
 
-public class MockLauncher {
+public class MockScenarioLauncher {
 	
 	SimpleMockLocationProvider mock;
 	private final List<Action> _actions;
 	
 	// making a new instance, instantly launch scenario
-	public MockLauncher(Context ctx, final List<Action> actions) {
-		this._actions = actions;
-		mock = SimpleMockLocationProvider.makeInstance((LocationManager) ctx.getSystemService(Context.LOCATION_SERVICE));
-		 // start playing fake GPS every two seconds AND LOOP
-		mock.start(new FakeLocationSource(SimpleMockLocationProvider.mockLocationProvider, true));
+	public MockScenarioLauncher(Context ctx, final List<Action> actions) {
+		this._actions = actions;		
 		
 		Thread t = new Thread(
 				new Runnable() {
